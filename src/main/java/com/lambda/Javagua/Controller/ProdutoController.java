@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lambda.Javagua.DTOS.ProdutoCreateDTO;
+import com.lambda.Javagua.DTOS.ProdutoDTO;
 import com.lambda.Javagua.Model.Produto;
 import com.lambda.Javagua.Service.ProdutoService;
 
@@ -27,13 +29,13 @@ public class ProdutoController {
 	}
 
 	@PostMapping
-	public Produto criarProduto(@RequestBody Produto produto) {
-		return produtoService.salvarProduto(produto);
+	public ProdutoDTO criarProduto(@RequestBody ProdutoCreateDTO dto) {
+	    return produtoService.salvarProduto(dto);
 	}
 	
 	@GetMapping("/{id}")
-    public Produto buscarProdutoPorId(@PathVariable Long id) {
-        return produtoService.buscarProdutoPorId(id);
+    public ProdutoDTO buscarProdutoPorId(@PathVariable Long id) {
+        return produtoService.buscarProdutoPorId(id);	
     }
 	
 	@DeleteMapping("/{id}")

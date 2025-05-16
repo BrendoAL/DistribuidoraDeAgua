@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lambda.Javagua.DTOS.FornecedorCreateDTO;
+import com.lambda.Javagua.DTOS.FornecedorDTO;
 import com.lambda.Javagua.Model.Fornecedor;
 import com.lambda.Javagua.Repositoy.FornecedorRepository;
 
@@ -18,9 +20,14 @@ public class FornecedorService {
 		return fornecedorRepository.findAll();
 	}
 	
-	public Fornecedor salvarFornecedor(Fornecedor fornecedor) {
-		return fornecedorRepository.save(fornecedor);
-	}
+	public FornecedorDTO criarFornecedor(FornecedorCreateDTO dto) {
+        Fornecedor fornecedor = new Fornecedor();
+        fornecedor.setMarca(dto.getMarca());
+        fornecedor.setCnpj(dto.getCnpj());
+        fornecedor = fornecedorRepository.save(fornecedor);
+
+        return new FornecedorDTO(fornecedor);
+    }
 	
 	public void deletarFornecedor(Long id) {
 		fornecedorRepository.deleteById(id);
