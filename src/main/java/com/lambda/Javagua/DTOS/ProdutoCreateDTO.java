@@ -1,14 +1,35 @@
 package com.lambda.Javagua.DTOS;
 
-public class ProdutoCreateDTO {
-    private String nome;
-    private String tamanho;
-    private String dataFabricacao;
-    private String validade;
-    private double preco;
-    private Long fornecedorId; 
+import java.time.LocalDate;
 
-    // Getters e setters
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+
+public class ProdutoCreateDTO {
+	@NotBlank(message = "O nome não pode ficar em branco.")
+    private String nome;
+	@NotEmpty
+    private String tamanho;
+    private LocalDate dataFabricacao;
+    private LocalDate validade;
+	@Positive
+    private double preco;
+	@PositiveOrZero
+	private Integer estoque;
+	
+    public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
+	}
+
+	private Long fornecedorId; 
 
     public String getNome() {
         return nome;
@@ -26,19 +47,19 @@ public class ProdutoCreateDTO {
         this.tamanho = tamanho;
     }
 
-    public String getDataFabricacao() {
+    public @Past LocalDate getDataFabricacao() {
         return dataFabricacao;
     }
 
-    public void setDataFabricacao(String dataFabricacao) {
+    public void setDataFabricacao(@Past(message = "A data não pode ser no futuro.") LocalDate dataFabricacao) {
         this.dataFabricacao = dataFabricacao;
     }
 
-    public String getValidade() {
+    public LocalDate getValidade() {
         return validade;
     }
 
-    public void setValidade(String validade) {
+    public void setValidade(@Future(message = "A data não pode ser no passado") LocalDate validade) {
         this.validade = validade;
     }
 

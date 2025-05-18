@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lambda.Javagua.DTOS.ClienteCreateDTO;
+import com.lambda.Javagua.DTOS.ClienteDTO;
 import com.lambda.Javagua.Model.Cliente;
 import com.lambda.Javagua.Service.ClienteService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/clientes")
@@ -27,8 +31,8 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-    public Cliente criarCliente(@RequestBody Cliente cliente) {
-        return clienteService.salvarCliente(cliente);
+    public ClienteDTO criarCliente(@Valid @RequestBody ClienteCreateDTO dto) {
+        return clienteService.salvarCliente(dto);
     }
 
     @GetMapping("/{id}")

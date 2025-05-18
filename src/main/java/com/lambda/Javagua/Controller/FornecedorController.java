@@ -16,6 +16,8 @@ import com.lambda.Javagua.DTOS.FornecedorDTO;
 import com.lambda.Javagua.Model.Fornecedor;
 import com.lambda.Javagua.Service.FornecedorService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/fornecedor")
 public class FornecedorController {
@@ -29,7 +31,7 @@ public class FornecedorController {
 	}
 
 	@PostMapping
-	public FornecedorDTO criarFornecedor(@RequestBody FornecedorCreateDTO dto) {
+	public FornecedorDTO criarFornecedor(@Valid @RequestBody FornecedorCreateDTO dto) {
 		return fornecedorService.criarFornecedor(dto);
 	}
 

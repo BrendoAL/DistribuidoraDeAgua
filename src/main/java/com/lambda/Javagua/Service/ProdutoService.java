@@ -41,6 +41,7 @@ public class ProdutoService {
 	    dto.setDataFabricacao(produto.getDataFabricacao());
 	    dto.setValidade(produto.getValidade());
 	    dto.setPreco(produto.getPreco());
+	    dto.setEstoque(produto.getEstoque());
 
 	    if (produto.getFornecedor() != null) {
 	        dto.setFornecedorId(produto.getFornecedor().getId());
@@ -57,6 +58,7 @@ public class ProdutoService {
 	    produto.setDataFabricacao(dto.getDataFabricacao());
 	    produto.setValidade(dto.getValidade());
 	    produto.setPreco(dto.getPreco());
+	    produto.setEstoque(dto.getEstoque());
 	    
 	    Fornecedor fornecedor = fornecedorRepository.findById(dto.getFornecedorId())
 	            .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));

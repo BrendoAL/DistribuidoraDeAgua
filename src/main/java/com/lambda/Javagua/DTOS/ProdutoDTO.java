@@ -1,5 +1,7 @@
 package com.lambda.Javagua.DTOS;
 
+import java.time.LocalDate;
+
 import com.lambda.Javagua.Model.Produto;
 
 public class ProdutoDTO {
@@ -7,11 +9,18 @@ public class ProdutoDTO {
 	private Long id;
 	private String nome;
 	private String tamanho;
-	private String dataFabricacao;
-	private String validade;
+	private LocalDate dataFabricacao;
+	private LocalDate validade;
 	private double preco;
+	private Integer estoque;
 
-	// Construtores
+	public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
+	}
 
 	public ProdutoDTO() {
 	}
@@ -23,9 +32,8 @@ public class ProdutoDTO {
 		this.dataFabricacao = produto.getDataFabricacao();
 		this.validade = produto.getValidade();
 		this.preco = produto.getPreco();
+		this.estoque = produto.getEstoque();
 	}
-
-	// Getters e Setters
 
 	public Long getId() {
 		return id;
@@ -51,20 +59,20 @@ public class ProdutoDTO {
 		this.tamanho = tamanho;
 	}
 
-	public String getDataFabricacao() {
+	public LocalDate getDataFabricacao() {
 		return dataFabricacao;
 	}
 
-	public void setDataFabricacao(String dataFabricacao) {
+	public void setDataFabricacao(LocalDate dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
 	}
 
-	public String getValidade() {
+	public LocalDate getValidade() {
 		return validade;
 	}
 
-	public void setValidade(String validade) {
-		this.validade = validade;
+	public void setValidade(LocalDate localDate) {
+		this.validade = localDate;
 	}
 
 	public double getPreco() {
@@ -76,7 +84,5 @@ public class ProdutoDTO {
 	}
 
 	public void setFornecedorId(Long id2) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -16,6 +16,8 @@ import com.lambda.Javagua.DTOS.ProdutoDTO;
 import com.lambda.Javagua.Model.Produto;
 import com.lambda.Javagua.Service.ProdutoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
@@ -29,7 +31,7 @@ public class ProdutoController {
 	}
 
 	@PostMapping
-	public ProdutoDTO criarProduto(@RequestBody ProdutoCreateDTO dto) {
+	public ProdutoDTO criarProduto(@Valid @RequestBody ProdutoCreateDTO dto) {
 	    return produtoService.salvarProduto(dto);
 	}
 	

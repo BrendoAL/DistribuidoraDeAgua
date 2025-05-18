@@ -1,5 +1,8 @@
 package com.lambda.Javagua.Model;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,9 +17,20 @@ public class Produto {
 	private Long id;
 	private String nome;
 	private String tamanho;
-	private String dataFabricacao;
-	private String validade;
+	private LocalDate dataFabricacao;
+	private LocalDate validade;
 	private double preco;
+	@Column(name = "estoque")
+	private Integer estoque;
+	
+	public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
+	}
+
 	@ManyToOne
 	private Fornecedor fornecedor;
 
@@ -44,19 +58,19 @@ public class Produto {
 		this.tamanho = tamanho;
 	}
 
-	public String getDataFabricacao() {
+	public LocalDate getDataFabricacao() {
 		return dataFabricacao;
 	}
 
-	public void setDataFabricacao(String dataFabricacao) {
+	public void setDataFabricacao(LocalDate dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
 	}
 
-	public String getValidade() {
+	public LocalDate getValidade() {
 		return validade;
 	}
 
-	public void setValidade(String validade) {
+	public void setValidade(LocalDate validade) {
 		this.validade = validade;
 	}
 

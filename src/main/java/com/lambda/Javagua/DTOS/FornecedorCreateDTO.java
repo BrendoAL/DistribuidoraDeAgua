@@ -1,9 +1,13 @@
 package com.lambda.Javagua.DTOS;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class FornecedorCreateDTO {
 
-	private Long id;
+	@NotBlank(message = "A marca não pode ficar em branco.")
 	private String marca;
+	@Size(min= 14, max=14)
 	private String cnpj;
 
 	public String getMarca() {
@@ -20,14 +24,6 @@ public class FornecedorCreateDTO {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 }
