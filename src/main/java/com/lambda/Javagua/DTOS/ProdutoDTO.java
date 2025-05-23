@@ -32,7 +32,7 @@ public class ProdutoDTO {
 		this.dataFabricacao = produto.getDataFabricacao();
 		this.validade = produto.getValidade();
 		this.preco = produto.getPreco();
-		this.estoque = produto.getEstoque();
+		this.estoque = produto.getEstoque();	
 	}
 
 	public Long getId() {

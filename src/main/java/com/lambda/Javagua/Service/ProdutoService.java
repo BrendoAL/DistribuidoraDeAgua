@@ -33,6 +33,13 @@ public class ProdutoService {
 		produtoRepository.deleteById(id);
 	}
 	
+	public ProdutoDTO buscarProdutoPorId(Long id) {
+		Produto produto = produtoRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Produto não encontrado ID: " + id));
+		
+		return converterParaDTO(produto);
+	}
+	
 	private ProdutoDTO converterParaDTO(Produto produto) {
 	    ProdutoDTO dto = new ProdutoDTO();
 	    dto.setId(produto.getId());
@@ -68,12 +75,5 @@ public class ProdutoService {
 	        Produto salvo = produtoRepository.save(produto);
 
 	        return converterParaDTO(salvo);
-	}
-	
-	public ProdutoDTO buscarProdutoPorId(Long id) {
-	    Produto produto = produtoRepository.findById(id)
-	        .orElseThrow(() -> new RuntimeException("Produto não encontrado ID: " + id));
-
-	    return converterParaDTO(produto);
-	}
+	}	
 }
