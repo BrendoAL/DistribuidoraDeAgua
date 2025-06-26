@@ -76,4 +76,26 @@ public class ProdutoService {
 
 	        return converterParaDTO(salvo);
 	}	
+	
+	public ProdutoDTO atualizarProduto(Long id, ProdutoCreateDTO dto) {
+	    Produto produto = produtoRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Produto não encontrado ID: " + id));
+
+	    produto.setNome(dto.getNome());
+	    produto.setTamanho(dto.getTamanho());
+	    produto.setDataFabricacao(dto.getDataFabricacao());
+	    produto.setValidade(dto.getValidade());
+	    produto.setPreco(dto.getPreco());
+	    produto.setEstoque(dto.getEstoque());
+
+	    Fornecedor fornecedor = fornecedorRepository.findById(dto.getFornecedorId())
+	            .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
+
+	    produto.setFornecedor(fornecedor);
+
+	    Produto atualizado = produtoRepository.save(produto);
+
+	    return converterParaDTO(atualizado);
+	}
+
 }
